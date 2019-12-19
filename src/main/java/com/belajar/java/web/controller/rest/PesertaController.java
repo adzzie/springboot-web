@@ -5,9 +5,8 @@ import com.belajar.java.web.entity.Peserta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Description PesertaController
@@ -20,8 +19,18 @@ public class PesertaController {
     @Autowired
     private PesertaDao pd;
 
-    @GetMapping("/cari")
+    @GetMapping("")
     public Page<Peserta> cariPeserta(Pageable page){
         return pd.findAll(page);
     }
+
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void insertPesertaBaru(@RequestBody Peserta p){
+        pd.save(p);
+    }
+
+
+
+
 }
