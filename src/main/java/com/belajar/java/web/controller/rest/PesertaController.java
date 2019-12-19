@@ -47,6 +47,11 @@ public class PesertaController {
         return pd.findById(id);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void hapusPeserta(@PathVariable("id") String id){
+        pd.deleteById(id);
+    }
 
 
 }
