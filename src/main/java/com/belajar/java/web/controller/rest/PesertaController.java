@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 /**
@@ -28,7 +30,8 @@ public class PesertaController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void insertPesertaBaru(@RequestBody Peserta p){
+    public void insertPesertaBaru(
+            @RequestBody @Valid Peserta p){
         pd.save(p);
     }
 
@@ -36,21 +39,30 @@ public class PesertaController {
     @ResponseStatus(HttpStatus.OK)
     public void updatePeserta(
             @PathVariable("id") String id,
-            @RequestBody Peserta p){
+            @RequestBody @Valid Peserta p){
         p.setId(id);
         pd.save(p);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Peserta> cariPesertaById(@PathVariable("id") String id){
-        return pd.findById(id);
+    public ResponseEntity<Peserta> cariPesertaById(@PathVariable("id") String id){
+        Optional<Peserta> p =  pd.findById(id);
+        if(p.orElse(null) == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.of(p);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void hapusPeserta(@PathVariable("id") String id){
+    public ResponseEntity<Peserta> hapusPeserta(@PathVariable("id") String id){
+        Optional<Peserta> p = pd.findById(id);
+        if(p.orElse(null) == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         pd.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
