@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 /**
  * Description PesertaController
  *
@@ -30,6 +32,20 @@ public class PesertaController {
         pd.save(p);
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePeserta(
+            @PathVariable("id") String id,
+            @RequestBody Peserta p){
+        p.setId(id);
+        pd.save(p);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Peserta> cariPesertaById(@PathVariable("id") String id){
+        return pd.findById(id);
+    }
 
 
 
