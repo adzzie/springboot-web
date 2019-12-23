@@ -3,10 +3,8 @@ package com.belajar.java.web.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import java.util.Date;
 
 /**
@@ -23,14 +21,11 @@ public class Peserta {
     @NotNull @NotEmpty
     private String nama;
 
-    @NotNull @NotEmpty @Email
-    @Column(unique = true)
+    @NotNull @NotEmpty @Column(unique = true)
     private String email;
 
-    @Column(name = "tanggal_lahir")
-    @NotNull
+    @Column(name = "tanggal_lahir") @NotNull
     @Temporal(TemporalType.DATE)
-    @Past
     private Date tanggalLahir;
 
     public String getId() {
