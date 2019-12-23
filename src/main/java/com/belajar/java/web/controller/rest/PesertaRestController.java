@@ -18,8 +18,8 @@ import java.util.Optional;
  * @author aji gojali
  */
 @RestController
-@RequestMapping("/peserta")
-public class PesertaController {
+@RequestMapping("/rest/peserta")
+public class PesertaRestController {
     @Autowired
     private PesertaDao pd;
 

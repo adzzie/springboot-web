@@ -15,7 +15,7 @@ import java.util.Map;
  * @author aji gojali
  */
 @RestController
-@RequestMapping("/halo")
+@RequestMapping("/helo")
 public class HeloController {
 
     @GetMapping("")

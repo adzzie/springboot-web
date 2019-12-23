@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmls="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Peserta</title>
+</head>
+<body>
+    <h1>Form Peserta</h1>
+
+    <form action="#" th:action="@{/peserta/form}" th:method="${method}" th:object="${peserta}"  >
+        <table>
+            <input type="hidden" th:field="*{id}" />
+            <tr>
+                <td>Nama</td>
+                <td><input type="text" th:field="*{nama}" /></td>
+                <td th:if="${#fields.hasErrors('nama')}" th:error="*{nama}" ></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" th:field="*{email}"  /></td>
+                <td th:if="${#fields.hasErrors('email')}" th:error="*{email}" ></td>
+            </tr>
+            <tr>
+                <td>Tanggal Lahir</td>
+                <td><input type="date" th:field="*{tanggalLahir}"  /></td>
+                <td th:if="${#fields.hasErrors('tanggalLahir')}" th:error="*{tanggalLahir}" ></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+        </table>
+
+    </form>
+
+</body>
+</html>

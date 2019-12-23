@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmls="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Peserta</title>
+</head>
+<body>
+    <h1>Daftar Peserta</h1>
+    <div><a href="#" th:href="@{/peserta/form}">tambah</a></div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Tanggal Lahir</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${daftarPeserta}">
+                <td th:text="${p.nama}"></td>
+                <td th:text="${p.email}"></td>
+                <td th:text="${p.tanggalLahir}"></td>
+                <td>
+                    <a href="javascript:void(0)" th:href="@{/peserta/form(id=${p.id})}">lihat</a> |
+                    <a href="javascript:void(0)" th:href="@{/peserta/form(id=${p.id})}">edit</a> |
+                    <a href="javascript:void(0)" th:href="@{/peserta/hapus(id=${p.id})}">hapus</a>
+                </td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
+</body>
+</html>
