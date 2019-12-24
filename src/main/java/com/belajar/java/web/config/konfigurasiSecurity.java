@@ -67,6 +67,10 @@ public class konfigurasiSecurity extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
+                .antMatchers("/peserta/form").hasRole("ADMIN")
+                .antMatchers("/peserta/hapus").hasRole("ADMIN")
+                .antMatchers("/peserta/index").hasAnyRole("ADMIN","STAFF")
+                .antMatchers("/halo").hasAnyRole("ADMIN","STAFF")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

@@ -34,7 +34,7 @@ public class PesertaViewController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dataFormat, true));
     }
 
-    @GetMapping(value = {"","/","/index"})
+    @GetMapping("/index")
     public String index(Model model){
         model.addAttribute("daftarPeserta", pd.findAll());
         return "peserta/index";
