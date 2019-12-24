@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmls="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Daftar Peserta</title>
 </head>
 <body>
     <h1>Daftar Peserta</h1>
+    <div><form name="f" th:action="@{/logout}" method="post"><button type="submit">logout</button></form></div>
     <div><a href="#" th:href="@{/peserta/form}">tambah</a></div>
     <table border="1">
         <thead>
